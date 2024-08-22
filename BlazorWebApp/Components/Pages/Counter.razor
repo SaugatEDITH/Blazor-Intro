@@ -10,8 +10,9 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 <div class="m-4">
-<input type="text" @oninput="HandleInput" placeholder="name"/>
+<input type="text" @oninput="HandleInput" @onkeydown="keypress" placeholder="name"/>
 <p>@name</p>
+<p>@DivTextKey</p>
 </div>
 <div style="border: 1px solid black;" @onmouseover="MousEventHandel">
 <p>@DivText</p>
@@ -23,6 +24,7 @@
     public int incrementCount {get; set;}=1;
     string name="";
     string DivText="";
+    string DivTextKey="";
     private void IncrementCount()
     {
         currentCount+=incrementCount;
@@ -34,5 +36,9 @@
     private void MousEventHandel(MouseEventArgs e)
     {
         DivText="You are hovering over"; 
+    }
+    private void keypress(KeyboardEventArgs e)
+    {
+        DivTextKey=e.Key;
     }
 }
