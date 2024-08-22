@@ -9,13 +9,23 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<div class="m-4">
+<input type="text" @oninput="HandleInput" placeholder="name"/>
+<p>@name</p>
+</div>
+
+
 @code {
     private int currentCount = 0;
     [Parameter]
     public int incrementCount {get; set;}=1;
-
+    string name="";
     private void IncrementCount()
     {
         currentCount+=incrementCount;
+    }
+    private void HandleInput(ChangeEventArgs e)
+    {
+      name  =(String)e.Value;      
     }
 }
