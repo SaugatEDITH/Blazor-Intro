@@ -10,35 +10,47 @@
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
 <div class="m-4">
-<input type="text" @oninput="HandleInput" @onkeydown="keypress" placeholder="name"/>
-<p>@name</p>
-<p>@DivTextKey</p>
+<input type="text" @oninput="HandleInput" placeholder="name"/>
+<input type="text" @bind="text" @bind:event="oninput" placeholder="binding event"/>
+<input type="text" @onkeydown="keypress" placeholder="keystrock"/>
+<input type="text" @onfocus="FocusEvent" @onblur="BlurEvent" placeholder="mouse focus or blur"/>
+<p>@text</p>
 </div>
 <div style="border: 1px solid black;" @onmouseover="MousEventHandel">
-<p>@DivText</p>
+<p>@text</p>
 </div>
 
 @code {
     private int currentCount = 0;
+    //can be used to get value from other page to change behaviour 
     [Parameter]
     public int incrementCount {get; set;}=1;
-    string name="";
-    string DivText="";
-    string DivTextKey="";
+    string text="";
     private void IncrementCount()
     {
         currentCount+=incrementCount;
     }
     private void HandleInput(ChangeEventArgs e)
     {
-        name  =(String)e.Value!;       
+        // see one by one keyboard input stream
+        text  =(String)e.Value!;       
     }
     private void MousEventHandel(MouseEventArgs e)
     {
-        DivText="You are hovering over"; 
+        //on hover
+        text="You are hovering over"; 
     }
     private void keypress(KeyboardEventArgs e)
     {
-        DivTextKey=e.Key;
+        //pass the pressed key name to DivTextKey
+        text=e.Key;
+    }
+    private void FocusEvent(FocusEventArgs e)
+    {
+       text="You are typing"; 
+    }
+    private void BlurEvent(FocusEventArgs e)
+    {
+        text="you are not typing , clicked away";
     }
 }
