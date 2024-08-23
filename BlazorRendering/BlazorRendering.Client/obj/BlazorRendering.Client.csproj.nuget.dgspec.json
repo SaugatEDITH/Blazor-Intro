@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Blazor-Intro\\BlazorWebApp\\BlazorWebApp.csproj": {}
+    "D:\\Blazor-Intro\\BlazorRendering\\BlazorRendering.Client\\BlazorRendering.Client.csproj": {}
   },
   "projects": {
-    "D:\\Blazor-Intro\\BlazorWebApp\\BlazorWebApp.csproj": {
+    "D:\\Blazor-Intro\\BlazorRendering\\BlazorRendering.Client\\BlazorRendering.Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Blazor-Intro\\BlazorWebApp\\BlazorWebApp.csproj",
-        "projectName": "BlazorWebApp",
-        "projectPath": "D:\\Blazor-Intro\\BlazorWebApp\\BlazorWebApp.csproj",
+        "projectUniqueName": "D:\\Blazor-Intro\\BlazorRendering\\BlazorRendering.Client\\BlazorRendering.Client.csproj",
+        "projectName": "BlazorRendering.Client",
+        "projectPath": "D:\\Blazor-Intro\\BlazorRendering\\BlazorRendering.Client\\BlazorRendering.Client.csproj",
         "packagesPath": "C:\\Users\\acer\\.nuget\\packages\\",
-        "outputPath": "D:\\Blazor-Intro\\BlazorWebApp\\obj\\",
+        "outputPath": "D:\\Blazor-Intro\\BlazorRendering\\BlazorRendering.Client\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\acer\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -42,6 +42,24 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[8.0.8, )"
+            },
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.8, )",
+              "autoReferenced": true
+            },
+            "Microsoft.NET.Sdk.WebAssembly.Pack": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.8, )",
+              "autoReferenced": true
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -53,15 +71,23 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[8.0.8, 8.0.8]"
+            }
+          ],
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "browser-wasm": {
+          "#import": []
         }
       }
     }
