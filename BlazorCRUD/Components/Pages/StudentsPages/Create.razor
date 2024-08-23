@@ -1,0 +1,57 @@
+﻿@page "/students/create"
+
+@using Microsoft.EntityFrameworkCore
+@using BlazorCRUD.Models
+@inject IDbContextFactory<BlazorCRUD.Data.BlazorCRUDContext> DbFactory
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<PageTitle>Create</PageTitle>
+
+<h1>Create</h1>
+
+<h4>Students</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <EditForm method="post" Model="Students" OnValidSubmit="AddStudents" FormName="create" Enhance>
+            <DataAnnotationsValidator />
+            <ValidationSummary class="text-danger" />
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label> 
+                <InputText id="name" @bind-Value="Students.Name" class="form-control" /> 
+                <ValidationMessage For="() => Students.Name" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="age" class="form-label">Age:</label> 
+                <InputNumber id="age" @bind-Value="Students.Age" class="form-control" /> 
+                <ValidationMessage For="() => Students.Age" class="text-danger" /> 
+            </div>        
+            <div class="mb-3">
+                <label for="birthday" class="form-label">Birthday:</label> 
+                <InputDate id="birthday" @bind-Value="Students.Birthday" class="form-control" /> 
+                <ValidationMessage For="() => Students.Birthday" class="text-danger" /> 
+            </div>        
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+
+<div>
+    <a href="/students">Back to List</a>
+</div>
+
+@code {
+
+    [SupplyParameterFromForm]
+    public Students Students { get; set; } = new();
+
+    // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
+    public async Task AddStudents()
+    {
+        using var context = DbFactory.CreateDbContext();
+        context.Students.Add(Students);
+        await context.SaveChangesAsync();
+        NavigationManager.NavigateTo("/students");
+    }
+}
