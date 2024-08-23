@@ -11,7 +11,7 @@
 
 <div class="m-4">
 <input type="text" @oninput="HandleInput" placeholder="name"/>
-<input type="text" @bind="text" @bind:event="oninput" placeholder="binding event"/>
+<input type="text" @bind="text" @bind:event="oninput" @bind:after="Search" placeholder="binding event"/>
 <input type="text" @onkeydown="keypress" placeholder="keystrock"/>
 <input type="text" @onfocus="FocusEvent" @onblur="BlurEvent" placeholder="mouse focus or blur"/>
 <p>@text</p>
@@ -19,6 +19,7 @@
 <div style="border: 1px solid black;" @onmouseover="MousEventHandel">
 <p>@text</p>
 </div>
+<p>@result</p>
 
 @code {
     private int currentCount = 0;
@@ -26,6 +27,7 @@
     [Parameter]
     public int incrementCount {get; set;}=1;
     string text="";
+    string result="";
     private void IncrementCount()
     {
         currentCount+=incrementCount;
@@ -52,5 +54,9 @@
     private void BlurEvent(FocusEventArgs e)
     {
         text="you are not typing , clicked away";
+    }
+    async Task Search(){
+        await Task.Delay(3000);
+result="169 result were found";
     }
 }
