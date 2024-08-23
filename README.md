@@ -1,6 +1,6 @@
 # BlazorIntro
 
-![Blazor Logo](https://github.com/dotnet/brand)
+![Blazor](https://img.shields.io/badge/blazor-%235C2D91.svg?style=for-the-badge&logo=blazor&logoColor=white)
 
 ## Introduction
 
